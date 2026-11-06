@@ -1,0 +1,3 @@
+{% extends 'control/base.html' %}{% block title %}Registrar usuario{% endblock %}{% block content %}<div class="acceso tarjeta"><h1>Crear cuenta</h1><p class="ayuda">Solo personal autorizado debe tener acceso a la información del taller.</p>
+<form method="post">{% csrf_token %}{% for campo in formulario %}<label for="{{ campo.id_for_label }}">{{ campo.label }}</label>{{ campo }}{% if campo.help_text %}<small class="ayuda">{{ campo.help_text }}</small>{% endif %}{% for error in campo.errors %}<small class="error-texto">{{ error }}</small>{% endfor %}{% endfor %}
+<button class="boton completo" type="submit">Crear cuenta</button></form><p class="centrado"><a href="{% url 'login' %}">Volver al login</a></p></div>{% endblock %}

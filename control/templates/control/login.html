@@ -1,0 +1,8 @@
+{% extends 'control/base.html' %}{% block title %}Acceder | Taller Automotriz{% endblock %}{% block content %}
+<div class="acceso tarjeta"><div class="icono-grande">⚙</div><h1>Acceso al sistema</h1><p class="ayuda">Ingresa con tu usuario autorizado.</p>
+<form method="post">{% csrf_token %}{% if formulario.non_field_errors %}<div class="aviso error">{{ formulario.non_field_errors }}</div>{% endif %}
+<label for="id_username">Usuario</label>{{ formulario.username }}<label for="id_password">Contraseña</label>{{ formulario.password }}
+<label class="check"><input type="checkbox" name="recordarme" value="1"> Mantener mi cuenta abierta (14 días)</label>
+<button type="submit" class="boton completo">Ingresar</button></form>
+{% if registro_abierto %}<p class="centrado">¿Aún no tienes cuenta? <a href="{% url 'registro' %}">Registrar usuario</a></p>{% else %}<p class="ayuda centrado">Registro restringido. Solicita acceso al administrador.</p>{% endif %}</div>
+{% endblock %}

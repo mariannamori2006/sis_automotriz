@@ -1,0 +1,10 @@
+{% load static %}
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Taller Automotriz{% endblock %}</title><link rel="stylesheet" href="{% static 'control/css/style.css' %}"></head>
+<body><header class="cabecera"><div class="marca">⚙ <span>Taller Automotriz</span><small>Gestión de servicio mecánico</small></div>
+{% if user.is_authenticated %}<div class="usuario">{{ user.username }} <form action="{% url 'logout' %}" method="post" class="en-linea">{% csrf_token %}<button class="salir" type="submit">Cerrar sesión</button></form></div>{% endif %}</header>
+{% if user.is_authenticated %}<nav class="menu">
+<a href="{% url 'inicio' %}">Inicio</a><a href="{% url 'listado' 'clientes' %}">Clientes</a><a href="{% url 'listado' 'vehiculos' %}">Vehículos</a><a href="{% url 'listado' 'mecanicos' %}">Mecánicos</a><a href="{% url 'listado' 'citas' %}">Citas</a><a href="{% url 'listado' 'diagnosticos' %}">Diagnósticos</a><a href="{% url 'listado' 'repuestos' %}">Repuestos</a><a href="{% url 'listado' 'ordenes' %}">Órdenes</a><a href="{% url 'reporte' %}">Reportes</a>
+</nav>{% endif %}
+<main class="contenedor">{% if messages %}{% for message in messages %}<div class="aviso {{ message.tags }}" role="status">{{ message }}</div>{% endfor %}{% endif %}{% block content %}{% endblock %}</main>
+<footer>Taller Automotriz · Sistema de gestión · Datos confidenciales</footer><script src="{% static 'control/js/app.js' %}"></script></body></html>
